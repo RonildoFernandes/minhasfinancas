@@ -9,10 +9,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 
 @Entity
 @Table(name="usuario",schema ="financas")
+@Builder
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Usuario {
 	@Id
 	@Column(name="id")
@@ -20,14 +26,13 @@ public class Usuario {
 	private Long id ;
 	
 	@Column(name="nome")
-	private String nome = "ronildo";
+	private String nome ;
 	
 	@Column(name="email")
-	private String email = "ronildo38fernandes@hotmail.com";
+	private String email ;
 	
 	@Column(name="senha")
-	private String senha = "123456";
+	private String senha ;
 
-		
 	
 }

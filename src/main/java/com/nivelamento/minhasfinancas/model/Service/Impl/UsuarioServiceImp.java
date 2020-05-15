@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nivelamento.minhasfinancas.model.Entity.Usuario;
+import com.nivelamento.minhasfinancas.model.Excepition.RegraNegocioExcepition;
 import com.nivelamento.minhasfinancas.model.Repository.UsuarioRepository;
 import com.nivelamento.minhasfinancas.model.Service.UsuariosService;
 @Service
@@ -32,8 +33,10 @@ public class UsuarioServiceImp implements UsuariosService {
 
 	@Override
 	public void validarEmail(String email) {
-		repository.;
-		
+		boolean existe = repository.existsByEmail(email);
+		if(existe) {
+			throw new RegraNegocioExcepition("já existe um usuário com esse email.");
+		}
 	}
 
 }
