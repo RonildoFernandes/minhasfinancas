@@ -1,8 +1,10 @@
 package com.nivelamento.minhasfinancas.model.Service;
 
+import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -11,6 +13,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.nivelamento.minhasfinancas.model.Entity.Usuario;
 import com.nivelamento.minhasfinancas.model.Excepition.RegraNegocioExcepition;
 import com.nivelamento.minhasfinancas.model.Repository.UsuarioRepository;
+import com.nivelamento.minhasfinancas.model.Service.Impl.UsuarioServiceImp;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
@@ -21,11 +24,18 @@ public class UsuarioServiceTest {
 	UsuariosService service;
 	@Autowired
 	UsuarioRepository repo;
+	
+	@Before
+	public void setUp() {
+		repo = Mockito.mock(UsuarioRepository.class);
+		service = new UsuarioServiceImp(repo);
+	}
+	
 	@Test
 	public void deveValidarEmail() {
 		//cenario
 		
-		repo.deleteAll();
+		Mockito.when(repo.existsByEmail(Mockito.anyString())).thenReturn(false);
 		
 		//acao
 		service.validarEmail("email@email.com");
