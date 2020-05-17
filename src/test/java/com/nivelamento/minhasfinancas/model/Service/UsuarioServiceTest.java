@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
@@ -127,6 +126,30 @@ public class UsuarioServiceTest {
 		assertThat(salvo.getNome()).isEqualTo("Ronildo");
 		assertThat(salvo.getEmail()).isEqualTo("email@email.com");
 		assertThat(salvo.getSenha()).isEqualTo("senha");
+	}
+	
+	@Test
+	public void naoDeveSalvarUmusuarioComEmailCadastrado() {
+		
+		Assertions.assertThrows(RegraNegocioExcepition.class, () -> 
+		{
+			//cenario
+			
+			String email ="email@email.com";
+			Usuario usuario = Usuario.builder().email(email).build();
+			
+			Mockito.doThrow(RegraNegocioExcepition.class).when(service).validarEmail(email);
+			
+			//ação
+			service.salvarUsuario(usuario);
+			//verificação
+			
+			Mockito.verify(repo,Mockito.never()).save(usuario);
+			
+			
+			
+		});
+		
 	}
 
 }

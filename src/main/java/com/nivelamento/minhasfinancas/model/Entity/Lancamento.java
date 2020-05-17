@@ -3,7 +3,6 @@ package com.nivelamento.minhasfinancas.model.Entity;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;

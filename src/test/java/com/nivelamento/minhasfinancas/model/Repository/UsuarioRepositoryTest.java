@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
@@ -13,6 +14,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.nivelamento.minhasfinancas.model.Entity.Usuario;
+import com.nivelamento.minhasfinancas.model.Excepition.RegraNegocioExcepition;
 
 
 @ExtendWith(SpringExtension.class)
@@ -88,6 +90,7 @@ public class UsuarioRepositoryTest {
 	
 	}
 	
+
 	public static Usuario criarUsuario() {
 		return  Usuario.builder().nome("usuario")
 			   .email("usuario@email.com").senha("senha").build();

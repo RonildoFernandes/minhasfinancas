@@ -1,6 +1,5 @@
 package com.nivelamento.minhasfinancas.model.Entity;
 
-import javax.annotation.sql.DataSourceDefinition;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
